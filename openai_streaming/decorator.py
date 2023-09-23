@@ -1,4 +1,4 @@
-from types import FunctionType, NoneType
+from types import FunctionType
 from typing import Generator, get_origin, Union, Optional, Any
 from typing import get_args
 from .openai_function import openai_function
@@ -20,7 +20,7 @@ def openai_streaming_function(func: FunctionType) -> Any:
             gen = None
             other = None
             for arg in args:
-                if isinstance(arg, NoneType):
+                if isinstance(arg, type(None)):
                     optional = True
                 if get_origin(arg) is get_origin(Generator):
                     gen = arg

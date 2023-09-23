@@ -1,5 +1,7 @@
 import json
 import unittest
+from os.path import dirname
+
 import openai
 from unittest.mock import patch
 from openai_streaming import process_response, openai_streaming_function
@@ -33,7 +35,7 @@ def error_message(type: str, description: Generator[str, None, None]):
 class TestOpenAIChatCompletion(unittest.TestCase):
 
     def setUp(self):
-        with open('mock_response.json', 'r') as f:
+        with open(f"{dirname(__file__)}/mock_response.json", 'r') as f:
             self.mock_response = json.load(f)
         error_messages.clear()
 
