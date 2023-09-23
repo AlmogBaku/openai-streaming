@@ -5,6 +5,7 @@ on:
     paths:
       - '**.py'
       - '!**/tests/**'
+  workflow_dispatch: ~
 
 permissions:
   contents: write
