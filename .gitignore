@@ -3,4 +3,5 @@ __pycache__
 .pytest_cache
 build/
 dist
-json_streamer.egg-info/
+openai_streaming.egg-info/
+.benchmarks
