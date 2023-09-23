@@ -1,0 +1,6 @@
+__pycache__
+.idea
+.pytest_cache
+build/
+dist
+json_streamer.egg-info/

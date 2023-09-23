@@ -1,0 +1,477 @@
+[
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "error_message",
+            "arguments": ""
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": "{\n"
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": " "
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": " \""
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": "type"
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": "\":"
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": " \""
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": "for"
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": "bidden"
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": "\",\n"
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": " "
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": " \""
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": "description"
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": "\":"
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": " \""
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": "I"
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": "'m"
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": " sorry"
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": ","
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": " but"
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": " I"
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": " cannot"
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": " disclose"
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": " my"
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": " code"
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": ".\"\n"
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {
+          "function_call": {
+            "arguments": "}"
+          }
+        },
+        "finish_reason": null
+      }
+    ]
+  },
+  {
+    "id": "chatcmpl-test",
+    "object": "chat.completion.chunk",
+    "created": 1,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+      {
+        "index": 0,
+        "delta": {},
+        "finish_reason": "function_call"
+      }
+    ]
+  }
+]
