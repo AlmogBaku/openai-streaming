@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -74,12 +74,12 @@ jobs:
       - name: "Publish to PyPi"
         uses: pypa/gh-action-pypi-publish@v1.8.10
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Update changelog
         shell: bash
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config user.name github-actions
+          git config user.email github-actions@github.com
 
           touch CHANGELOG.md
           echo -e "${{ needs.version.outputs.changelog }}\n\n$(cat CHANGELOG.md)" > CHANGELOG.md
