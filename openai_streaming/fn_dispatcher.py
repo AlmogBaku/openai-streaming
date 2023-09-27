@@ -27,6 +27,8 @@ def o_func(func):
     """
     if hasattr(func, 'func'):
         return o_func(func.func)
+    if hasattr(func, '__func'):
+        return o_func(func.__func)
     return func
 
 

@@ -23,9 +23,10 @@
 #
 # Since the original project has taken a huge pivot and provide many unnecessary features - this is a stripped version
 # of the openai_function decorator copied from
-# https://github.com/jxnl/instructor/blob/0.2.3/openai_function_call/function_calls.py
+# https://github.com/jxnl/instructor/blob/0.2.8/instructor/function_calls.py
 
 import json
+from docstring_parser import parse
 from functools import wraps
 from typing import Any, Callable
 from pydantic import validate_arguments
@@ -35,7 +36,7 @@ def _remove_a_key(d, remove_key) -> None:
     """Remove a key from a dictionary recursively"""
     if isinstance(d, dict):
         for key in list(d.keys()):
-            if key == remove_key:
+            if key == remove_key and "type" in d.keys():
                 del d[key]
             else:
                 _remove_a_key(d[key], remove_key)
@@ -70,12 +71,19 @@ class openai_function:
     def __init__(self, func: Callable) -> None:
         self.func = func
         self.validate_func = validate_arguments(func)
+        self.docstring = parse(self.func.__doc__ or "")
+
         parameters = self.validate_func.model.model_json_schema()
         parameters["properties"] = {
             k: v
             for k, v in parameters["properties"].items()
             if k not in ("v__duplicate_kwargs", "args", "kwargs")
         }
+        for param in self.docstring.params:
+            if (name := param.arg_name) in parameters["properties"] and (
+                    description := param.description
+            ):
+                parameters["properties"][name]["description"] = description
         parameters["required"] = sorted(
             k for k, v in parameters["properties"].items() if not "default" in v
         )
@@ -83,7 +91,7 @@ class openai_function:
         _remove_a_key(parameters, "title")
         self.openai_schema = {
             "name": self.func.__name__,
-            "description": self.func.__doc__,
+            "description": self.docstring.short_description,
             "parameters": parameters,
         }
         self.model = self.validate_func.model
@@ -106,7 +114,7 @@ class openai_function:
         Returns:
             result (any): result of the function call
         """
-        message = completion.choices[0].message
+        message = completion["choices"][0]["message"]
 
         if throw_error:
             assert "function_call" in message, "No function call detected"
