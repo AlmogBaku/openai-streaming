@@ -1,4 +1,30 @@
-def print_stream_log(log):
+from typing import List, Iterator
+
+from openai.openai_object import OpenAIObject
+
+
+def stream_to_log(response: Iterator[OpenAIObject]) -> List[OpenAIObject]:
+    """
+    A utility function to convert a stream to a log.
+    :param response: The response stream from OpenAI
+    :return: A list of the response stream
+    """
+
+    log = []
+    for r in response:
+        log.append(r)
+    return log
+
+
+def print_stream_log(log: List[OpenAIObject]):
+    """
+    A utility function to print the log of a stream nicely.
+    This is useful for debugging, when you first save the stream to an array and then use it.
+
+    :param log:
+    :return:
+    """
+
     log = log.copy()
     content_print = False
     for l in log:

@@ -80,7 +80,7 @@
         "index": 0,
         "delta": {
           "function_call": {
-            "arguments": "type"
+            "arguments": "typ"
           }
         },
         "finish_reason": null

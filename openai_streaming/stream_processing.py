@@ -1,6 +1,7 @@
 import json
 from inspect import getfullargspec
-from typing import List, Generator, Tuple, Callable, Optional, Union, Dict, Set, Any, Iterator
+from typing import List, Generator, Tuple, Callable, Optional, Union, Dict, Set, Any, Iterator, AsyncGenerator, \
+    Awaitable
 
 from openai.openai_object import OpenAIObject
 
@@ -12,6 +13,7 @@ class ContentFuncDef:
     """
     A class that represents a content function definition - it's name and argument name.
     """
+
     name: str
     arg: str
 
@@ -31,20 +33,23 @@ class ContentFuncDef:
         self.name = func.__name__
 
 
-def _simplified_generator(response: Iterator[OpenAIObject], content_fn_def: Optional[ContentFuncDef], result: Dict) \
-        -> Callable[[], Generator[Tuple[str, Dict], None, None]]:
+def _simplified_generator(
+        response: Union[Iterator[OpenAIObject], List[OpenAIObject]],
+        content_fn_def: Optional[ContentFuncDef],
+        result: Dict
+) -> Callable[[], AsyncGenerator[Tuple[str, Dict], None]]:
     """
-    Return a generator that converts an OpenAI response stream to a simple generator that yields function names and
-    their arguments as dictionaries.
+    Return an async generator that converts an OpenAI response stream to a simple generator that yields function names
+     and their arguments as dictionaries.
 
-    :param response: the response stream
-    :param content_fn_def: the content function definition
-    :return: a function that returns a generator
+    :param response: The response stream
+    :param content_fn_def: The content function definition
+    :return: A function that returns a generator
     """
 
     result["role"] = "assistant"
 
-    def generator() -> Generator[Tuple[str, Dict], None, None]:
+    async def generator() -> AsyncGenerator[Tuple[str, Dict], None]:
         for r in _process_stream(response, content_fn_def):
             if content_fn_def is not None and r[0] == content_fn_def.name:
                 yield content_fn_def.name, {content_fn_def.arg: r[2]}
@@ -75,9 +80,9 @@ class DiffPreprocessor:
         """
         Preprocesses the current dictionary by returning only the difference between the current dictionary and the
             previous one.
-        :param key: the key of the current dictionary, this is usually the function name
-        :param current_dict: the current dictionary value to preprocess
-        :return: the difference between the current dictionary and the previous one
+        :param key: The key of the current dictionary, this is usually the function name
+        :param current_dict: The current dictionary value to preprocess
+        :return: The difference between the current dictionary and the previous one
         """
         if self.content_fn is not None and key == self.content_fn.name:
             return current_dict
@@ -93,23 +98,23 @@ class DiffPreprocessor:
         return diff_dict
 
 
-def process_response(
-        response: Iterator[OpenAIObject],
-        content_func: Optional[Callable[[Generator[str, None, None]], None]] = None,
-        funcs: Optional[List[Callable]] = None,
+async def process_response(
+        response: Union[Iterator[OpenAIObject], List[OpenAIObject]],
+        content_func: Optional[Callable[[Generator[str, None, None]], Awaitable[None]]] = None,
+        funcs: Optional[List[Callable[[], Awaitable[None]]]] = None,
         self: Optional = None
 ) -> Tuple[Set[str], Dict[str, Any]]:
     """
     Processes an OpenAI response stream and returns a set of function names that were invoked, and a dictionary contains
      the results of the functions (to be used as part of the message history for the next api request).
 
-    :param response: the response stream from OpenAI
-    :param content_func: the function to use for the assistant's text message
-    :param funcs: the functions to use when called by the assistant
-    :param self: an optional self argument to pass to the functions
-    :return: a tuple of the set of function names that were invoked and a dictionary of the results of the functions
-    :raises ValueError: if the arguments are invalid
-    :raises LookupError: if the response does not contain a delta
+    :param response: The response stream from OpenAI
+    :param content_func: The function to use for the assistant's text message
+    :param funcs: The functions to use when called by the assistant
+    :param self: An optional self argument to pass to the functions
+    :return: A tuple of the set of function names that were invoked and a dictionary of the results of the functions
+    :raises ValueError: If the arguments are invalid
+    :raises LookupError: If the response does not contain a delta
     """
 
     if content_func is None and funcs is None:
@@ -131,10 +136,16 @@ def process_response(
     result = {}
     gen = _simplified_generator(response, content_fn_def, result)
     preprocess = DiffPreprocessor(content_fn_def)
-    return dispatch_yielded_functions_with_args(gen, func_map, preprocess.preprocess, self), result
+    return await dispatch_yielded_functions_with_args(gen, func_map, preprocess.preprocess, self), result
 
 
 def _arguments_processor(json_loader=loads) -> Generator[Tuple[ParseState, dict], str, None]:
+    """
+    A generator that processes a JSON stream and yields the parsed arguments.
+    :param json_loader: The JSON loader to use
+    :return: A generator that yields the parsed arguments
+    """
+
     loader = json_loader()
     next(loader)
 
@@ -159,6 +170,13 @@ def _arguments_processor(json_loader=loads) -> Generator[Tuple[ParseState, dict]
 
 def _process_stream(response: Iterator[OpenAIObject], content_fn_def: Optional[ContentFuncDef]) \
         -> Generator[Tuple[str, ParseState, Union[dict, str]], None, None]:
+    """
+    Processes an OpenAI response stream and yields the function name, the parse state and the parsed arguments.
+    :param response: The response stream from OpenAI
+    :param content_fn_def: The content function definition
+    :return: A generator that yields the function name, the parse state and the parsed arguments
+    """
+
     current_processor = None
     current_fn = None
     for message in response:

@@ -1,3 +1,4 @@
+from collections.abc import AsyncGenerator
 from types import FunctionType
 from typing import Generator, get_origin, Union, Optional, Any
 from typing import get_args
@@ -7,10 +8,10 @@ from .openai_function import openai_function
 def openai_streaming_function(func: FunctionType) -> Any:
     """
     Decorator that converts a function to an OpenAI streaming function using the `openai-function-call` package.
-    It simply "reduce" the type of the arguments to the Generator type, and uses `openai_function` to do the rest.
+    It simply "reduces" the type of the arguments to the Generator type, and uses `openai_function` to do the rest.
 
-    :param func: the function to convert
-    :return: wrapped function with a `openai_schema` attribute
+    :param func: The function to convert
+    :return: Wrapped function with a `openai_schema` attribute
     """
     for key, val in func.__annotations__.items():
         optional = False
@@ -22,7 +23,7 @@ def openai_streaming_function(func: FunctionType) -> Any:
             for arg in args:
                 if isinstance(arg, type(None)):
                     optional = True
-                if get_origin(arg) is get_origin(Generator):
+                if get_origin(arg) is get_origin(Generator) or get_origin(arg) is AsyncGenerator:
                     gen = arg
                 else:
                     other = arg
@@ -30,7 +31,7 @@ def openai_streaming_function(func: FunctionType) -> Any:
                 val = gen
 
         args = get_args(val)
-        if get_origin(val) is get_origin(Generator):
+        if get_origin(val) is get_origin(Generator) or get_origin(val) is AsyncGenerator:
             val = args[0]
 
         if optional:
