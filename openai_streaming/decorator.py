@@ -1,4 +1,5 @@
 from collections.abc import AsyncGenerator
+from inspect import iscoroutinefunction
 from types import FunctionType
 from typing import Generator, get_origin, Union, Optional, Any
 from typing import get_args
@@ -13,6 +14,9 @@ def openai_streaming_function(func: FunctionType) -> Any:
     :param func: The function to convert
     :return: Wrapped function with a `openai_schema` attribute
     """
+    if not iscoroutinefunction(func):
+        raise ValueError("openai_streaming_function can only be applied to async functions")
+
     for key, val in func.__annotations__.items():
         optional = False
 
@@ -31,7 +35,9 @@ def openai_streaming_function(func: FunctionType) -> Any:
                 val = gen
 
         args = get_args(val)
-        if get_origin(val) is get_origin(Generator) or get_origin(val) is AsyncGenerator:
+        if get_origin(val) is get_origin(Generator):
+            raise ValueError("openai_streaming_function does not support Generator type. Use AsyncGenerator instead.")
+        if get_origin(val) is AsyncGenerator:
             val = args[0]
 
         if optional:

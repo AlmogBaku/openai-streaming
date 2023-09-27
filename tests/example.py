@@ -11,8 +11,8 @@ openai.api_key = os.environ["OPENAI_API_KEY"]
 
 
 # Define content handler
-async def content_handler(content: Generator[str, None, None]):
-    async for token in content: # <-- the content is an AsyncGenerator and not a Generator!
+async def content_handler(content: AsyncGenerator[str, None]):
+    async for token in content:
         print(token, end="")
 
 
