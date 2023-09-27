@@ -11,7 +11,7 @@ from .fn_dispatcher import dispatch_yielded_functions_with_args, o_func
 
 class ContentFuncDef:
     """
-    A class that represents a content function definition - it's name and argument name.
+    A class that represents a Content Function definition: function name, and argument name.
     """
 
     name: str
@@ -26,8 +26,8 @@ class ContentFuncDef:
             raise ValueError("content_func must have only one argument (aside to self)")
 
         if len(spec.annotations) == 1:
-            if spec.annotations[spec.args[0]] is not Generator[str, None, None]:
-                raise ValueError("content_func must have only one argument of type Generator[str, None, None]")
+            if spec.annotations[spec.args[0]] is not AsyncGenerator[str, None]:
+                raise ValueError("content_func must have only one argument of type AsyncGenerator[str, None]")
 
         self.arg = spec.args[0]
         self.name = func.__name__
