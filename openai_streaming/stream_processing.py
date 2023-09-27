@@ -100,7 +100,7 @@ class DiffPreprocessor:
 
 async def process_response(
         response: Union[Iterator[OpenAIObject], List[OpenAIObject]],
-        content_func: Optional[Callable[[Generator[str, None, None]], Awaitable[None]]] = None,
+        content_func: Optional[Callable[[AsyncGenerator[str, None]], Awaitable[None]]] = None,
         funcs: Optional[List[Callable[[], Awaitable[None]]]] = None,
         self: Optional = None
 ) -> Tuple[Set[str], Dict[str, Any]]:
