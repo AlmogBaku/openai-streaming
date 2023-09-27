@@ -10,26 +10,15 @@ authors = [{name = "Almog Baku", email = "almog.baku@gmail.com"}]
 license = {text = "MIT"}
 readme = "README.md"
 keywords = ["openai", "gpt", "llm", "streaming", "stream", "generator"]
+dependencies= [
+    "openai>=0.27.8",
+    "json-streamer>=0.1.0,<0.2.0",
+    "pydantic>=2.0.2,<3.0.0",
+    "docstring-parser>=0.15"
+]
+requires-python = ">=3.9"
 
-[compatibility]
-python = "^3.9"
-
-[dependencies]
-openai = "^0.27.8"
-json-streamer = "^0.1.0"
-pydantic = "^2.0.2"
-docstring-parser = "^0.15"
-
-[dev-dependencies]
-pytest = "^6.2"
-
-[scripts]
-# Add any scripts or entry points if needed
-
-[package]
-include = ["*.py"]
-
-[project.urls]  # Optional
+[project.urls]
 "Homepage" = "https://github.com/AlmogBaku/openai-streaming"
 "Bug Reports" = "https://github.com/AlmogBaku/openai-streaming/issues"
 "Source" = "https://github.com/AlmogBaku/openai-streaming/"
