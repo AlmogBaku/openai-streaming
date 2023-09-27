@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "openai-streaming"
-version = "0.1.0"
+version = "0.0.0-dev"
 description = "Work with OpenAI's streaming API at ease with Python generators"
 authors = [{name = "Almog Baku", email = "almog.baku@gmail.com"}]
 license = {text = "MIT"}
