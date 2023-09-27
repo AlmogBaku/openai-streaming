@@ -1,0 +1,13 @@
+loaders:
+  - type: python
+    search_path:
+      - ./openai_streaming
+processors:
+  - type: filter
+    expression: not name.startswith('_') and name != 'openai_function' and default()
+    skip_empty_modules: true
+  - type: smart
+  - type: crossref
+renderer:
+  type: markdown
+  filename: docs/reference.md

@@ -63,7 +63,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -72,6 +72,8 @@ jobs:
         env:
           BUILD_VERSION: "${{ needs.version.outputs.version }}"
         run: sed -i "s/version = \"0.0.0-dev\"/version = \"${BUILD_VERSION}\"/g" pyproject.toml
+      - name: Update reference docs
+        run: pipx run pydoc-markdown
       - name: Build SDist
         run: pipx run build --sdist --wheel
       - name: "Publish to PyPi"
@@ -88,6 +90,7 @@ jobs:
           echo -e "${{ needs.version.outputs.changelog }}\n\n$(cat CHANGELOG.md)" > CHANGELOG.md
 
           git add CHANGELOG.md
+          git add docs/reference.md
           git commit -m "chore(release): ${{ needs.version.outputs.version }}" CHANGELOG.md
           git push
       - name: Tag
