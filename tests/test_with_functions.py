@@ -5,10 +5,10 @@ from os.path import dirname
 import openai
 from unittest.mock import patch
 from openai_streaming import process_response, openai_streaming_function
-from typing import Generator, AsyncGenerator
+from typing import AsyncGenerator
 
 
-async def content_handler(content: Generator[str, None, None]):
+async def content_handler(content: AsyncGenerator[str, None]):
     async for token in content:
         print(token, end="")
 

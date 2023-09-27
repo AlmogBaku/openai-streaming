@@ -3,7 +3,7 @@ import os
 import openai
 import asyncio
 from openai_streaming import process_response
-from typing import Generator, AsyncGenerator
+from typing import AsyncGenerator
 from openai_streaming import openai_streaming_function
 
 # Initialize API key

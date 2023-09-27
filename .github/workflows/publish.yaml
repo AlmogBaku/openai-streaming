@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - '**.py'
-      - '!**/tests/**'
   workflow_dispatch: ~
 
 permissions:
