@@ -1,20 +1,34 @@
+![https://pypi.org/p/openai-streaming](https://img.shields.io/pypi/v/openai-streaming.svg)
+![/LICENSE](https://img.shields.io/github/license/AlmogBaku/openai-streaming.svg)
+![/issues](https://img.shields.io/github/issues/AlmogBaku/openai-streaming.svg)
+![/stargazers](https://img.shields.io/github/stars/AlmogBaku/openai-streaming.svg)
+![/docs/reference.md](https://img.shields.io/badge/docs-reference-blue.svg)
+
 # OpenAI Streaming
+
 `openai-streaming` is a Python library designed to simplify interactions with the OpenAI Streaming API.
 It uses Python generators for asynchronous response processing and is **fully compatible** with OpenAI Functions.
 
-## Features
+If you like this project, or find it interesting - **⭐️ please star us on GitHub ⭐️**
+
+## ⭐️ Features
+
 - Easy-to-use Pythonic interface
 - Supports OpenAI's generator-based streaming
 - Callback mechanism for handling stream content
 - Supports OpenAI Functions
 
-## Installation
-Install the package using pip:
+
+# 🚀 Getting started
+
+Install the package using pip or your favorite package manager:
+
 ```bash
 pip install openai-streaming
 ```
 
-## Quick Start
+## ⚡️ Quick Start
+
 The following example shows how to use the library to process a streaming response of a simple conversation:
 
 ```python
@@ -26,10 +40,12 @@ from typing import AsyncGenerator
 # Initialize API key
 openai.api_key = "<YOUR_API_KEY>"
 
+
 # Define content handler
 async def content_handler(content: AsyncGenerator[str, None]):
     async for token in content:
         print(token, end="")
+
 
 async def main():
     # Request and process stream
@@ -40,13 +56,15 @@ async def main():
     )
     await process_response(resp, content_handler)
 
+
 asyncio.run(main())
 ```
 
 **🪄 Tip:**
 You can also use `await openai.ChatCompletion.acreate(...)` to make the request asynchronous.
 
-## Working with OpenAI Functions
+## 😎 Working with OpenAI Functions
+
 Integrate OpenAI Functions using decorators.
 
 ```python
@@ -61,7 +79,7 @@ async def error_message(typ: str, description: AsyncGenerator[str, None]):
     """
 
     print("Type: ", end="")
-    async for token in typ: # <-- Notice that `typ` is an AsyncGenerator and not a string
+    async for token in typ:  # <-- Notice that `typ` is an AsyncGenerator and not a string
         print(token, end="")
     print("")
 
@@ -85,12 +103,28 @@ async def main():
     )
     await process_response(resp, content_handler, funcs=[error_message])
 
+
 asyncio.run(main())
 ```
 
-## Reference Documentation
-For more information, please refer to the [reference documentation](docs/reference.md).
+# 🤔 What's the big deal? Why should I use this library?
 
-## License
+The OpenAI Streaming API is a powerful tool that allows you to build interactive applications.
+Using `stream=True`, we can get the tokens as the model generates them, instead of waiting for the entire response.
+This can create a much friendlier user experience, as the user can see the model's response as it is being generated
+(and act as an illusion of a faster response time).
 
-This project is licensed under the terms of the [MIT license](LICENSE).
+However, the Streaming API is not easy to use - using the standard SDK, you have to manually handle the streaming
+responses, build the response string, parse the response JSON, and more. This can be a tedious task, especially when
+you use OpenAI Functions or request the model to generate a complex response (e.g., a JSON object).
+
+This small library aims to simplify the process of using the Streaming API, by providing a simple interface for handling
+streaming responses as simple Python generators.
+
+# 📑 Reference Documentation
+
+For more information, please refer to the [reference documentation](/docs/reference.md).
+
+# 📜 License
+
+This project is licensed under the terms of the [MIT license](/LICENSE).
