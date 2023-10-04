@@ -18,7 +18,6 @@ If you like this project, or find it interesting - **⭐️ please star us on Gi
 - Callback mechanism for handling stream content
 - Supports OpenAI Functions
 
-
 # 🚀 Getting started
 
 Install the package using pip or your favorite package manager:
@@ -107,19 +106,15 @@ async def main():
 asyncio.run(main())
 ```
 
-# 🤔 What's the big deal? Why should I use this library?
+# 🤔 What's the big deal? Why use this library?
 
-The OpenAI Streaming API is a powerful tool that allows you to build interactive applications.
-Using `stream=True`, we can get the tokens as the model generates them, instead of waiting for the entire response.
-This can create a much friendlier user experience, as the user can see the model's response as it is being generated
-(and act as an illusion of a faster response time).
+The OpenAI Streaming API is robust but challenging to navigate. Using the `stream=True` flag we get tokens as they are
+generated, instead of waiting for the entire response. This can create a much friendlier user experience, with the
+illusion of quicker response times. However, this involves complex tasks like manual stream handling
+and response parsing, especially when using OpenAI Functions or complex outputs.
 
-However, the Streaming API is not easy to use - using the standard SDK, you have to manually handle the streaming
-responses, build the response string, parse the response JSON, and more. This can be a tedious task, especially when
-you use OpenAI Functions or request the model to generate a complex response (e.g., a JSON object).
-
-This small library aims to simplify the process of using the Streaming API, by providing a simple interface for handling
-streaming responses as simple Python generators.
+`openai-streaming`, is a small library that simplifies this by offering a straightforward Python Generator interface for
+handling streaming responses.
 
 # 📑 Reference Documentation
 
