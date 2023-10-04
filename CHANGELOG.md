@@ -1,3 +1,14 @@
+# [0.2.0](https://github.com/AlmogBaku/openai-streaming/compare/v0.1.4...v0.2.0) (2023-10-03)
+
+
+### Features
+
+* support async openai calls ([7e9a835](https://github.com/AlmogBaku/openai-streaming/commit/7e9a83531e6f2cc3f53cd845b0fc3bb7557ac56e))
+
+
+
+
+
 ## [0.1.4](https://github.com/AlmogBaku/openai-streaming/compare/v0.1.3...v0.1.4) (2023-09-27)
 
 
