@@ -90,7 +90,7 @@ async def error_message(typ: str, description: AsyncGenerator[str, None]):
 # Invoke Function in a streaming request
 async def main():
     # Request and process stream
-    resp = await openai.ChatCompletion.acreate(
+    resp = await openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[{
             "role": "system",
