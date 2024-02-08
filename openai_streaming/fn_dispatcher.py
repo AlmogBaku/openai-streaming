@@ -1,6 +1,8 @@
 from inspect import getfullargspec, signature, iscoroutinefunction
-from typing import Callable, List, Dict, Tuple, Union, Optional, Set, AsyncGenerator
+from typing import Callable, List, Dict, Tuple, Union, Optional, Set, AsyncGenerator, get_origin, get_args, Type
 from asyncio import Queue, gather, create_task
+
+from pydantic import ValidationError
 
 
 async def _generator_from_queue(q: Queue) -> AsyncGenerator:
@@ -29,6 +31,8 @@ def o_func(func):
         return o_func(func.func)
     if hasattr(func, '__func'):
         return o_func(func.__func)
+    if hasattr(func, 'raw_function'):
+        return o_func(func.raw_function)
     return func
 
 
@@ -50,7 +54,8 @@ async def _invoke_function_with_queues(func: Callable, queues: Dict, self: Optio
 async def _read_stream(
         gen: Callable[[], AsyncGenerator[Tuple[str, Dict], None]],
         dict_preprocessor: Optional[Callable[[str, Dict], Dict]],
-        args_queues: Dict[str, Dict],
+        args_queues: Dict[str, Dict[str, Queue]],
+        args_types: Dict[str, Dict[str, Type]],
         yielded_functions: Queue[Optional[str]],
 ) -> None:
     """
@@ -60,6 +65,7 @@ async def _read_stream(
     :param dict_preprocessor: A function that takes a function name and a dictionary of arguments and returns a new
         dictionary of arguments
     :param args_queues: A dictionary of function names to dictionaries of argument names to queues of values
+    :param args_types: A dictionary of function names to a dictionaries of argument names to their type
     :param yielded_functions: A queue of function names that were yielded
     :return: void
     """
@@ -78,6 +84,8 @@ async def _read_stream(
                 raise ValueError(f"Function {func_name} was not registered")
             if arg_name not in args_queues[func_name]:
                 raise ValueError(f"Argument {arg_name} was not registered for function {func_name}")
+            if arg_name in args_types[func_name] and type(value) is not args_types[func_name][arg_name]:
+                raise ValidationError(f"Got invalid value type for argument `{arg_name}`")
             await args_queues[func_name][arg_name].put(value)
 
     await yielded_functions.put(None)
@@ -141,10 +149,11 @@ async def dispatch_yielded_functions_with_args(
         func_map = {o_func(func).__name__: func for func in funcs}
 
     for func_name, func in func_map.items():
-        if not iscoroutinefunction(func):
+        if not iscoroutinefunction(o_func(func)):
             raise ValueError(f"Function {func_name} is not an async function")
 
     args_queues = {}
+    args_types = {}
     for func_name in func_map:
         spec = getfullargspec(o_func(func_map[func_name]))
         if spec.args[0] == "self" and self is None:
@@ -152,9 +161,18 @@ async def dispatch_yielded_functions_with_args(
         idx = 1 if spec.args[0] == "self" else 0
         args_queues[func_name] = {arg: Queue() for arg in spec.args[idx:]}
 
+        # create type maps for validations
+        args_types[func_name] = {}
+        for arg in spec.args[idx:]:
+            if arg in spec.annotations:
+                a = spec.annotations[arg]
+                if get_origin(a) is get_origin(AsyncGenerator):
+                    a = get_args(a)[0]
+                args_types[func_name][arg] = a
+
     # Reading coroutine
     yielded_functions = Queue()
-    stream_processing = _read_stream(gen, dict_preprocessor, args_queues, yielded_functions)
+    stream_processing = _read_stream(gen, dict_preprocessor, args_queues, args_types, yielded_functions)
 
     # Dispatching thread per invoked function
     dispatch_invokes = _dispatch_yielded_function_coroutines(yielded_functions, func_map, args_queues, self)

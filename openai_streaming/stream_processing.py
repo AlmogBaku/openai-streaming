@@ -1,17 +1,22 @@
 import json
 from inspect import getfullargspec
 from typing import List, Generator, Tuple, Callable, Optional, Union, Dict, Any, Iterator, AsyncGenerator, Awaitable, \
-    Set, Coroutine, AsyncIterator
+    Set, AsyncIterator
 
-from openai.openai_object import OpenAIObject
+from openai import AsyncStream, Stream
+from openai.types.chat import ChatCompletion, ChatCompletionChunk
 
 from json_streamer import ParseState, loads
 from .fn_dispatcher import dispatch_yielded_functions_with_args, o_func
 
-OAIObject = Union[OpenAIObject, Dict]
-OAIGenerator = Union[Generator[OAIObject, Any, None], List[OAIObject], Iterator[OAIObject]]
-OAIAsyncGenerator = Union[AsyncGenerator[OAIObject, None], AsyncIterator[OAIObject]]
-OAIStream = Union[OAIGenerator, OAIAsyncGenerator]
+OAIResponse = Union[
+    ChatCompletion,
+    AsyncStream[ChatCompletionChunk],
+    Stream[ChatCompletionChunk],
+    Stream[ChatCompletion],
+    List[ChatCompletionChunk],
+    AsyncGenerator[ChatCompletion, None],
+]
 
 
 class ContentFuncDef:
@@ -39,7 +44,7 @@ class ContentFuncDef:
 
 
 def _simplified_generator(
-        response: OAIStream,
+        response: OAIResponse,
         content_fn_def: Optional[ContentFuncDef],
         result: Dict
 ) -> Callable[[], AsyncGenerator[Tuple[str, Dict], None]]:
@@ -104,7 +109,7 @@ class DiffPreprocessor:
 
 
 async def process_response(
-        response: OAIStream,
+        response: OAIResponse,
         content_func: Optional[Callable[[AsyncGenerator[str, None]], Awaitable[None]]] = None,
         funcs: Optional[List[Callable[[], Awaitable[None]]]] = None,
         self: Optional = None
@@ -135,7 +140,7 @@ async def process_response(
     func_map: Dict[str, Callable] = {}
     if funcs is not None:
         for func in funcs:
-            func_map[o_func(func).__name__] = o_func(func)
+            func_map[o_func(func).__name__] = func
     if content_fn_def is not None:
         func_map[content_fn_def.name] = content_func
 
@@ -184,7 +189,7 @@ class StreamProcessorState:
 
 
 async def _process_stream(
-        response: OAIStream,
+        response: OAIResponse,
         content_fn_def: Optional[ContentFuncDef]
 ) -> AsyncGenerator[Tuple[str, ParseState, Union[dict, str]], None]:
     """
@@ -206,34 +211,45 @@ async def _process_stream(
 
 
 def _process_message(
-        message: OAIObject,
+        message: ChatCompletionChunk,
         state: StreamProcessorState
 ) -> Generator[Tuple[str, ParseState, Union[dict, str]], None, None]:
-    choice = message["choices"][0]
-    if "delta" not in choice:
+    """
+    This function processes the responses as they arrive from OpenAI, and transforms them as a generator of
+    partial objects
+    :param message: the message from OpenAI
+    :param state: The processing state
+    :return: Generator
+    """
+    choice = message.choices[0]
+    if not choice.model_fields.get("delta"):
         raise LookupError("No delta in choice")
 
-    delta = message["choices"][0]["delta"]
-    if "function_call" in delta:
-        if "name" in delta["function_call"]:
+    delta = message.choices[0].delta
+    if delta.function_call or delta.tool_calls:
+        func = delta.function_call or delta.tool_calls[0].function
+        if func.name:
             if state.current_processor is not None:
                 state.current_processor.close()
-            state.current_fn = delta["function_call"]["name"]
+            state.current_fn = func.name
             state.current_processor = _arguments_processor()
             next(state.current_processor)
-        if "arguments" in delta["function_call"]:
-            arg = delta["function_call"]["arguments"]
+        if func.arguments:
+            arg = func.arguments
             ret = state.current_processor.send(arg)
             if ret is not None:
                 yield state.current_fn, ret[0], ret[1]
-    if "content" in delta:
-        if delta["content"] is None or delta["content"] == "":
+    if delta.content:
+        if delta.content is None or delta.content == "":
             return
         if state.content_fn_def is not None:
-            yield state.content_fn_def.name, ParseState.PARTIAL, delta["content"]
+            yield state.content_fn_def.name, ParseState.PARTIAL, delta.content
         else:
-            yield None, ParseState.PARTIAL, delta["content"]
-    if "finish_reason" in message and message["finish_reason"] == "finish_reason":
-        state.current_processor.close()
-        state.current_processor = None
+            yield None, ParseState.PARTIAL, delta.content
+    if message.choices[0].finish_reason and (
+            message.choices[0].finish_reason == "function_call" or message.choices[0].finish_reason == "tool_calls"
+    ):
+        if state.current_processor is not None:
+            state.current_processor.close()
+            state.current_processor = None
         state.current_fn = None

@@ -5,13 +5,13 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "openai-streaming"
 version = "0.0.0-dev"
-description = "Work with OpenAI's streaming API at ease with Python generators"
+description = "Work with OpenAI's streaming API at ease, with Python generators"
 authors = [{name = "Almog Baku", email = "almog.baku@gmail.com"}]
 license = {text = "MIT"}
 readme = "README.md"
 keywords = ["openai", "gpt", "llm", "streaming", "stream", "generator"]
 dependencies= [
-    "openai>=0.27.8",
+    "openai>=1.0.0,<2.0.0",
     "json-streamer>=0.1.0,<0.2.0",
     "pydantic>=2.0.2,<3.0.0",
     "docstring-parser>=0.15"
