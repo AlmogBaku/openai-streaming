@@ -1,3 +1,14 @@
+# [0.3.0](https://github.com/AlmogBaku/openai-streaming/compare/v0.2.0...v0.3.0) (2024-02-08)
+
+
+### Features
+
+* Upgrade OpenAI SDK to v1 ([13f8a2d](https://github.com/AlmogBaku/openai-streaming/commit/13f8a2d6a799536a82257538257c0180f170695b))
+
+
+
+
+
 # [0.2.0](https://github.com/AlmogBaku/openai-streaming/compare/v0.1.4...v0.2.0) (2023-10-03)
 
 
