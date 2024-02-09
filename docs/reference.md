@@ -10,9 +10,10 @@
 def openai_streaming_function(func: FunctionType) -> Any
 ```
 
-Decorator that converts a function to an OpenAI streaming function using the `openai-function-call` package.
+Decorator that creates an OpenAI Schema for your function, while support using Generators for Streaming.
 
-It simply "reduces" the type of the arguments to the Generator type, and uses `openai_function` to do the rest.
+To document your function (so the model will know how to use it), simply use docstring.
+Using standard docstring styles will also allow you to document your argument's description
 
 **Arguments**:
 
@@ -20,7 +21,7 @@ It simply "reduces" the type of the arguments to the Generator type, and uses `o
 
 **Returns**:
 
-Wrapped function with a `openai_schema` attribute
+Your function with additional attribute `openai_schema`
 
 <a id="utils"></a>
 
@@ -31,7 +32,9 @@ Wrapped function with a `openai_schema` attribute
 #### stream\_to\_log
 
 ```python
-def stream_to_log(response: Iterator[OpenAIObject]) -> List[OpenAIObject]
+async def stream_to_log(
+    response: Union[Iterator[OAIResponse], AsyncIterator[OAIResponse]]
+) -> List[OAIResponse]
 ```
 
 A utility function to convert a stream to a log.
@@ -49,7 +52,7 @@ A list of the response stream
 #### print\_stream\_log
 
 ```python
-def print_stream_log(log: List[OpenAIObject])
+async def print_stream_log(log: List[OAIResponse])
 ```
 
 A utility function to print the log of a stream nicely.
@@ -72,7 +75,7 @@ This is useful for debugging, when you first save the stream to an array and the
 class ContentFuncDef()
 ```
 
-A class that represents a content function definition - it's name and argument name.
+A class that represents a Content Function definition: function name, and argument name.
 
 <a id="stream_processing.DiffPreprocessor"></a>
 
@@ -113,7 +116,7 @@ The difference between the current dictionary and the previous one
 
 ```python
 async def process_response(
-        response: Union[Iterator[OpenAIObject], List[OpenAIObject]],
+        response: OAIResponse,
         content_func: Optional[Callable[[AsyncGenerator[str, None]],
                                         Awaitable[None]]] = None,
         funcs: Optional[List[Callable[[], Awaitable[None]]]] = None,
