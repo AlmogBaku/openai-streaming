@@ -10,27 +10,26 @@
 the [OpenAI Streaming API](https://platform.openai.com/docs/api-reference/streaming).
 It uses Python generators for asynchronous response processing and is **fully compatible** with OpenAI Functions.
 
-If you like this project, or find it interesting - **⭐️ please star us on GitHub ⭐️**
+If you like this project or find it interesting - **⭐️ please star us on GitHub ⭐️**
 
 ## ⭐️ Features
 
 - Easy-to-use Pythonic interface
-- Supports OpenAI's generator-based streaming
+- Supports OpenAI's generator-based Streaming
 - Callback mechanism for handling stream content
 - Supports OpenAI Functions
 
 ## 🤔 Common use-cases
 
 The main goal of this repository is to encourage you to use streaming to speed up the responses from the model.
-Among the use-cases for this library, you can:
+Among the use cases for this library, you can:
 
-- **Improve the UX of your app** - by utilizing Streaming you can show end-users responses much faster than waiting for
+- **Improve the UX of your app** - by utilizing Streaming, you can show end-users responses much faster than waiting for
   the final response.
-- **Speed up LLM chains/pipelines** - when processing massive amount of data (e.g. classification, NLP, data extraction,
-  etc.), every bit of speed improving can accelerate the processing time of the whole corpus.
-  Using Streaming, you can respond faster even for partial responses.
-  and continue with the pipeline
-- **Use functions/agents with streaming** - this library makes functions and agents with Streaming easy peasy.
+- **Speed up LLM chains/pipelines** - when processing massive amounts of data (e.g., classification, NLP, data
+  extraction, etc.), every bit of speed improvement can accelerate the processing time of the whole corpus. Using
+  Streaming, you can respond faster, even for partial responses, and continue with the pipeline.
+- **Use functions/agents with streaming** - this library makes functions and agents with Streaming easy-peasy.
 
 # 🚀 Getting started
 
@@ -55,7 +54,8 @@ client = AsyncOpenAI(
     api_key="<YOUR_API_KEY>",
 )
 
-# Define content handler
+
+# Define a content handler
 async def content_handler(content: AsyncGenerator[str, None]):
     async for token in content:
         print(token, end="")
@@ -102,7 +102,7 @@ async def error_message(typ: str, description: AsyncGenerator[str, None]):
         print(token, end="")
 
 
-# Invoke Function in a streaming request
+# Function calling in a streaming request
 async def main():
     # Request and process stream
     resp = await client.chat.completions.create(
@@ -123,12 +123,12 @@ asyncio.run(main())
 
 # 🤔 What's the big deal? Why use this library?
 
-The OpenAI Streaming API is robust but challenging to navigate. Using the `stream=True` flag we get tokens as they are
-generated, instead of waiting for the entire response. This can create a much friendlier user experience, with the
+The OpenAI Streaming API is robust but challenging to navigate. Using the `stream=True` flag, we get tokens as they are
+generated, instead of waiting for the entire response - this can create a much friendlier user experience with the
 illusion of quicker response times. However, this involves complex tasks like manual stream handling
 and response parsing, especially when using OpenAI Functions or complex outputs.
 
-`openai-streaming`, is a small library that simplifies this by offering a straightforward Python Generator interface for
+`openai-streaming` is a small library that simplifies this by offering a straightforward Python Generator interface for
 handling streaming responses.
 
 # 📑 Reference Documentation
