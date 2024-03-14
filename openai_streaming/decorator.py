@@ -5,7 +5,7 @@ from typing import Generator, get_origin, Union, Optional, Any, get_type_hints
 from typing import get_args
 
 from docstring_parser import parse
-from openai.types.beta.assistant import ToolFunction
+from openai.types.beta import FunctionTool
 from openai.types.shared import FunctionDefinition
 from pydantic import create_model
 
@@ -72,14 +72,17 @@ def openai_streaming_function(func: FunctionType) -> Any:
     docstring = parse(func.__doc__ or "")
 
     # prepare the parameters(arguments)
-    parameters = model.model_json_schema()
+    try:
+        parameters = model.model_json_schema()
+    except Exception as e:
+        parameters = model.schema() # Fallback to the default schema
 
     # extract parameter documentations from the docstring
     for param in docstring.params:
         if (name := param.arg_name) in parameters["properties"] and (description := param.description):
             parameters["properties"][name]["description"] = description
 
-    func.openai_schema = ToolFunction(type='function', function=FunctionDefinition(
+    func.openai_schema = FunctionTool(type='function', function=FunctionDefinition(
         name=func.__name__,
         description=docstring.short_description,
         parameters=parameters,
