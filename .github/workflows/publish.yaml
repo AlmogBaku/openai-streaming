@@ -52,6 +52,7 @@ jobs:
           skip-commit: 'true'
           skip-git-pull: 'true'
           git-push: 'false'
+          fallback-version: '0.3.2'
   release:
     name: "Release and publish the version"
     needs: [ tests, version ]
