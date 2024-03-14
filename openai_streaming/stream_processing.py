@@ -222,7 +222,7 @@ def _process_message(
     :return: Generator
     """
     choice = message.choices[0]
-    if not choice.model_fields.get("delta"):
+    if not hasattr(choice, "delta"):
         raise LookupError("No delta in choice")
 
     delta = message.choices[0].delta
