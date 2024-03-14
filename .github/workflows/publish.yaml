@@ -1,7 +1,9 @@
-name: Publish to PyPi
+name: Publish to PyPica
 
 on:
   push:
+    branches:
+      - main
     paths:
       - '**.py'
   workflow_dispatch: ~
