@@ -1,4 +1,4 @@
-name: Publish to PyPica
+name: Publish to PyPi
 
 on:
   push:
