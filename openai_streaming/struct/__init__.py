@@ -1,1 +1,1 @@
-from handler import process_struct_response, Terminate, BaseHandler
+from .handler import process_struct_response, Terminate, BaseHandler
