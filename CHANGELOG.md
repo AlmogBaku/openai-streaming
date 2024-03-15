@@ -1,3 +1,19 @@
+# [0.4.0](https://github.com/AlmogBaku/openai-streaming/compare/v0.3.0...v0.4.0) (2024-03-15)
+
+
+### Bug Fixes
+
+* [#5](https://github.com/AlmogBaku/openai-streaming/issues/5) supports older pydantic as well ([33ccd0e](https://github.com/AlmogBaku/openai-streaming/commit/33ccd0e40bad2b36cb9526ade81d82eb7f20cf43))
+
+
+### Features
+
+* the decorator now returns more explicit types to support IntelliSense ([3d1400d](https://github.com/AlmogBaku/openai-streaming/commit/3d1400de2eb819d22a9dcf38d0efa062cee4fc4d))
+
+
+
+
+
 # [0.3.0](https://github.com/AlmogBaku/openai-streaming/compare/v0.2.0...v0.3.0) (2024-02-08)
 
 
