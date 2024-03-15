@@ -1,16 +1,30 @@
 from collections.abc import AsyncGenerator
 from inspect import iscoroutinefunction, signature
-from types import FunctionType
-from typing import Generator, get_origin, Union, Optional, Any, get_type_hints
+from typing import Generator, get_origin, Union, Optional, get_type_hints, Protocol, TypeVar, Callable
 from typing import get_args
 
 from docstring_parser import parse
 from openai.types.beta import FunctionTool
+from openai.types.chat import ChatCompletionToolParam
 from openai.types.shared import FunctionDefinition
 from pydantic import create_model
 
 
-def openai_streaming_function(func: FunctionType) -> Any:
+class OpenAIStreamingFunction(Protocol):
+    """
+    A Protocol that represents a function that can be used with OpenAI Streaming.
+    """
+
+    openai_schema: ChatCompletionToolParam  # The OpenAI Schema for the function.
+
+    def __call__(self, *args, **kwargs):
+        pass
+
+
+F = TypeVar('F', bound=Callable[..., any])
+
+
+def openai_streaming_function(func: F) -> OpenAIStreamingFunction:
     """
     Decorator that creates an OpenAI Schema for your function, while support using Generators for Streaming.
     
@@ -75,7 +89,7 @@ def openai_streaming_function(func: FunctionType) -> Any:
     try:
         parameters = model.model_json_schema()
     except Exception as e:
-        parameters = model.schema() # Fallback to the default schema
+        parameters = model.schema()  # Fallback to the default schema
 
     # extract parameter documentations from the docstring
     for param in docstring.params:
