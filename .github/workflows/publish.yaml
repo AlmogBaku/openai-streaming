@@ -3,7 +3,7 @@ name: Publish to PyPi
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - '**.py'
   workflow_dispatch: ~
