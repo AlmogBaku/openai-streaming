@@ -2,3 +2,4 @@ openai==1.14.0
 json-streamer==0.1.0
 pydantic==2.6.4
 docstring-parser==0.15
+PyYAML==6.0.1

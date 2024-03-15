@@ -27,4 +27,4 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Test with pytest
         run: |
-          pytest --ignore=tests/example.py --doctest-modules --junitxml=junit/test-results.xml
+          pytest --ignore=tests/example.py --ignore=tests/struct_example.py --doctest-modules --junitxml=junit/test-results.xml
