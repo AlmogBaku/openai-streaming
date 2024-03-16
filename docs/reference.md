@@ -2,12 +2,28 @@
 
 # decorator
 
+<a id="decorator.OpenAIStreamingFunction"></a>
+
+## OpenAIStreamingFunction Objects
+
+```python
+class OpenAIStreamingFunction(Protocol)
+```
+
+A Protocol that represents a function that can be used with OpenAI Streaming.
+
+<a id="decorator.OpenAIStreamingFunction.openai_schema"></a>
+
+#### openai\_schema
+
+The OpenAI Schema for the function.
+
 <a id="decorator.openai_streaming_function"></a>
 
 #### openai\_streaming\_function
 
 ```python
-def openai_streaming_function(func: FunctionType) -> Any
+def openai_streaming_function(func: F) -> OpenAIStreamingFunction
 ```
 
 Decorator that creates an OpenAI Schema for your function, while support using Generators for Streaming.
@@ -188,4 +204,101 @@ dictionary of arguments
 **Returns**:
 
 A set of function names that were invoked
+
+<a id="struct.handler"></a>
+
+# struct.handler
+
+<a id="struct.handler.BaseHandler"></a>
+
+## BaseHandler Objects
+
+```python
+class BaseHandler(Protocol[TModel])
+```
+
+The base handler for the structured response from OpenAI.
+
+<a id="struct.handler.BaseHandler.model"></a>
+
+#### model
+
+```python
+def model() -> Type[TModel]
+```
+
+The Pydantic Data Model that we parse
+
+**Returns**:
+
+type of the Pydantic model
+
+<a id="struct.handler.BaseHandler.handle_partially_parsed"></a>
+
+#### handle\_partially\_parsed
+
+```python
+async def handle_partially_parsed(data: TModel) -> Optional[Terminate]
+```
+
+Handle partially parsed model
+
+**Arguments**:
+
+- `data`: The partially parsed object
+
+**Returns**:
+
+None or Terminate if we want to terminate the parsing
+
+<a id="struct.handler.BaseHandler.terminated"></a>
+
+#### terminated
+
+```python
+async def terminated()
+```
+
+Called when the parsing was terminated
+
+<a id="struct.handler.process_struct_response"></a>
+
+#### process\_struct\_response
+
+```python
+async def process_struct_response(
+    response: OAIResponse,
+    handler: BaseHandler,
+    output_serialization: OutputSerialization = "json"
+) -> Tuple[Optional[Union[TModel, Terminate]], Dict[str, Any]]
+```
+
+Process the structured response from OpenAI.
+
+This is useful when we want to parse a structured response from OpenAI in streaming mode. For example: our response
+contains reasoning, and content - but we want to stream only the content to the user.
+
+**Arguments**:
+
+- `response`: The response from OpenAI
+- `handler`: The handler for the response. It should be a subclass of `BaseHandler`
+- `output_serialization`: The output serialization of the response. It should be either "json" or "yaml"
+
+**Returns**:
+
+A tuple of the last parsed response, and a dictionary containing the OpenAI response
+
+<a id="struct.yaml_parser"></a>
+
+# struct.yaml\_parser
+
+<a id="struct.yaml_parser.YamlParser"></a>
+
+## YamlParser Objects
+
+```python
+class YamlParser(Parser)
+```
+
+Parse partial YAML
 

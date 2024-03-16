@@ -1,3 +1,4 @@
+# build with: pipx run pydoc-markdown
 loaders:
   - type: python
     search_path:
