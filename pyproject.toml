@@ -18,6 +18,9 @@ dependencies= [
 ]
 requires-python = ">=3.9"
 
+[project.optional-dependencies]
+yaml = ["PyYAML>6.0.0<7.0.0"]
+
 [project.urls]
 "Homepage" = "https://github.com/AlmogBaku/openai-streaming"
 "Bug Reports" = "https://github.com/AlmogBaku/openai-streaming/issues"

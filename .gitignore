@@ -6,3 +6,4 @@ dist
 openai_streaming.egg-info/
 .benchmarks
 junit
+.venv

@@ -1,0 +1,742 @@
+[
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": "",
+          "function_call": null,
+          "role": "assistant",
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": "steps",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": ":\n",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " ",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " -",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " \"",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": "Multiply",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " ",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": "3",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " by",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " ",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": "2",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " to",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " get",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " ",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": "6",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": "\"\n",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " ",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " -",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " \"",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": "Add",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " ",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": "1",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " to",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " ",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": "6",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " to",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " get",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " the",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " final",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " result",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": "\"\n",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": "answer",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": ":",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": " ",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": "7",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-test-struct",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-3.5-turbo-0125",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  }
+]
