@@ -1,4 +1,4 @@
-from typing import Protocol, Literal, AsyncGenerator, Optional, Type, TypeVar, Union
+from typing import Protocol, Literal, AsyncGenerator, Optional, Type, TypeVar, Union, Dict, Any, Tuple
 
 from pydantic import BaseModel
 
@@ -14,6 +14,10 @@ class Terminate:
 
 
 class BaseHandler(Protocol[TModel]):
+    """
+    The base handler for the structured response from OpenAI.
+    """
+
     def model(self) -> Type[TModel]:
         """
         The Pydantic Data Model that we parse
@@ -110,10 +114,21 @@ async def process_struct_response(
         response: OAIResponse,
         handler: BaseHandler,
         output_serialization: OutputSerialization = "json"
-):
+) -> Tuple[Optional[Union[TModel, Terminate]], Dict[str, Any]]:
+    """
+    Process the structured response from OpenAI.
+    This is useful when we want to parse a structured response from OpenAI in streaming mode. For example: our response
+    contains reasoning, and content - but we want to stream only the content to the user.
+
+    :param response: The response from OpenAI
+    :param handler: The handler for the response. It should be a subclass of `BaseHandler`
+    :param output_serialization: The output serialization of the response. It should be either "json" or "yaml"
+    :return: A tuple of the last parsed response, and a dictionary containing the OpenAI response
+    """
+
     handler = _ContentHandler(handler, output_serialization)
     _, result = await process_response(response, handler.handle_content, self=handler)
     if not handler.get_last_response():
         raise ValueError("Probably invalid response from OpenAI")
 
-    return result
+    return handler.get_last_response(), result

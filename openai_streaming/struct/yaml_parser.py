@@ -9,7 +9,7 @@ class YamlParser(Parser):
 
     @staticmethod
     def opening_symbols() -> List[chr]:
-        return ['{', '[']
+        return ['{', '[', '"']
 
     def raw_decode(self, s: str) -> Tuple[Dict, int]:
         try:
