@@ -21,10 +21,7 @@ class MathProblem(BaseModel):
 
 
 # Define handler
-class Handler(BaseHandler):
-    def model(self):
-        return MathProblem
-
+class Handler(BaseHandler[MathProblem]):
     async def handle_partially_parsed(self, data: MathProblem) -> Optional[Terminate]:
         pass
 
@@ -32,10 +29,7 @@ class Handler(BaseHandler):
         pass
 
 
-class Handler2(BaseHandler):
-    def model(self):
-        return MathProblem
-
+class Handler2(BaseHandler[MathProblem]):
     async def handle_partially_parsed(self, data: MathProblem) -> Optional[Terminate]:
         return Terminate()
 

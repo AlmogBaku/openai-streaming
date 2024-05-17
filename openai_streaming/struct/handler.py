@@ -1,4 +1,5 @@
-from typing import Protocol, Literal, AsyncGenerator, Optional, Type, TypeVar, Union, Dict, Any, Tuple
+from typing import Protocol, Literal, AsyncGenerator, Optional, TypeVar, Union, Dict, Any, Tuple, get_args, \
+    runtime_checkable
 
 from pydantic import BaseModel
 
@@ -13,17 +14,13 @@ class Terminate:
     pass
 
 
+@runtime_checkable
 class BaseHandler(Protocol[TModel]):
     """
     The base handler for the structured response from OpenAI.
-    """
 
-    def model(self) -> Type[TModel]:
-        """
-        The Pydantic Data Model that we parse
-        :return: type of the Pydantic model
-        """
-        pass
+    :param TModel: The `BaseModel` to parse the structured response to
+    """
 
     async def handle_partially_parsed(self, data: TModel) -> Optional[Terminate]:
         """
@@ -48,9 +45,9 @@ class _ContentHandler:
 
     def __init__(self, handler: BaseHandler, output_serialization: OutputSerialization = "yaml"):
         self.handler = handler
-        if output_serialization == "json":
+        if output_serialization.lower() == "json":
             self.parser = JsonParser()
-        elif output_serialization == "yaml":
+        elif output_serialization.lower() == "yaml":
             self.parser = YamlParser()
 
     async def handle_content(self, content: AsyncGenerator[str, None]):
@@ -95,7 +92,8 @@ class _ContentHandler:
         or `None` if the part is not valid
         """
         try:
-            parsed = self.handler.model()(**part)
+            typ = get_args(type(self.handler).__orig_bases__[0])[0]
+            parsed = typ(**part)
         except (TypeError, ValueError):
             return
 
@@ -121,10 +119,18 @@ async def process_struct_response(
     contains reasoning, and content - but we want to stream only the content to the user.
 
     :param response: The response from OpenAI
-    :param handler: The handler for the response. It should be a subclass of `BaseHandler`
+    :param handler: The handler for the response. It should be a subclass of `BaseHandler[BaseModel]` with a generic
+                    type provided
     :param output_serialization: The output serialization of the response. It should be either "json" or "yaml"
     :return: A tuple of the last parsed response, and a dictionary containing the OpenAI response
     """
+
+    if not issubclass(type(handler), BaseHandler):
+        raise ValueError("handler should be a subclass of BaseHandler")
+
+    tmodel = get_args(type(handler).__orig_bases__[0])[0]
+    if tmodel == TModel:
+        raise ValueError("handler should be a subclass of BaseHandler with a generic type")
 
     handler = _ContentHandler(handler, output_serialization)
     _, result = await process_response(response, handler.handle_content, self=handler)
