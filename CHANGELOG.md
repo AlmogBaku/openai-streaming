@@ -1,3 +1,22 @@
+# [0.5.0](https://github.com/AlmogBaku/openai-streaming/compare/v0.4.0...v0.5.0) (2024-05-17)
+
+
+### Bug Fixes
+
+* better multitool support ([dfc44b5](https://github.com/AlmogBaku/openai-streaming/commit/dfc44b57d1e095bc273c3afeb283a2438435796f))
+* housekeeping ([9482180](https://github.com/AlmogBaku/openai-streaming/commit/9482180c05b44a7156a61bb3aa22692d30911c00))
+* make struct processing fully defined with generics + add documentation ([9717483](https://github.com/AlmogBaku/openai-streaming/commit/9717483ad813412c06ac48afb4bf5a0bb29d4a1e))
+
+
+### Features
+
+* [#1](https://github.com/AlmogBaku/openai-streaming/issues/1) add supports complex struct parsing with streaming ([e687a13](https://github.com/AlmogBaku/openai-streaming/commit/e687a13ba06ba971fcfc1a60176c460bc4941a60))
+* [#1](https://github.com/AlmogBaku/openai-streaming/issues/1) add supports complex struct parsing with streaming ([137b9e9](https://github.com/AlmogBaku/openai-streaming/commit/137b9e92f62cea3df7921190dedcb57c657f50f8))
+
+
+
+
+
 # [0.4.0](https://github.com/AlmogBaku/openai-streaming/compare/v0.3.0...v0.4.0) (2024-03-15)
 
 
