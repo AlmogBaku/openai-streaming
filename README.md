@@ -180,9 +180,9 @@ works better with LLMs).
 # 🤔 What's the big deal? Why use this library?
 
 The OpenAI Streaming API is robust but challenging to navigate. Using the `stream=True` flag, we get tokens as they are
-generated, instead of waiting for the entire response - this can create a much friendlier user experience with the
-illusion of quicker response times. However, this involves complex tasks like manual stream handling
-and response parsing, especially when using OpenAI Functions or complex outputs.
+generated, instead of waiting for the entire response — this can create a much friendlier user experience with the
+illusion of a quicker response time. However, this involves complex tasks like manual stream handling  and response
+parsing, especially when using OpenAI Functions or complex outputs.
 
 `openai-streaming` is a small library that simplifies this by offering a straightforward Python Generator interface for
 handling streaming responses.
