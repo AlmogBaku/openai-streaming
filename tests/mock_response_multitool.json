@@ -1,0 +1,1032 @@
+[
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": "",
+          "function_call": null,
+          "role": "assistant",
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": "I",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": " am",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": " going",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": " to",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": " report",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": " an",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": " error",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": " and",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": " an",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": " intr",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": "uder",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": " for",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": " attempting",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": " to",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": " access",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": " restricted",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": " information",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": ".",
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 0,
+              "id": "call_1",
+              "function": {
+                "arguments": "",
+                "name": "error_message"
+              },
+              "type": "function"
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 0,
+              "id": null,
+              "function": {
+                "arguments": "{\"ty",
+                "name": null
+              },
+              "type": null
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 0,
+              "id": null,
+              "function": {
+                "arguments": "p\": \"",
+                "name": null
+              },
+              "type": null
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 0,
+              "id": null,
+              "function": {
+                "arguments": "Unauth",
+                "name": null
+              },
+              "type": null
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 0,
+              "id": null,
+              "function": {
+                "arguments": "oriz",
+                "name": null
+              },
+              "type": null
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 0,
+              "id": null,
+              "function": {
+                "arguments": "edAcc",
+                "name": null
+              },
+              "type": null
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 0,
+              "id": null,
+              "function": {
+                "arguments": "ess\", ",
+                "name": null
+              },
+              "type": null
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 0,
+              "id": null,
+              "function": {
+                "arguments": "\"des",
+                "name": null
+              },
+              "type": null
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 0,
+              "id": null,
+              "function": {
+                "arguments": "cript",
+                "name": null
+              },
+              "type": null
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 0,
+              "id": null,
+              "function": {
+                "arguments": "ion\": ",
+                "name": null
+              },
+              "type": null
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 0,
+              "id": null,
+              "function": {
+                "arguments": "\"Att",
+                "name": null
+              },
+              "type": null
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 0,
+              "id": null,
+              "function": {
+                "arguments": "empt ",
+                "name": null
+              },
+              "type": null
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 0,
+              "id": null,
+              "function": {
+                "arguments": "to acc",
+                "name": null
+              },
+              "type": null
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 0,
+              "id": null,
+              "function": {
+                "arguments": "ess ",
+                "name": null
+              },
+              "type": null
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 0,
+              "id": null,
+              "function": {
+                "arguments": "the r",
+                "name": null
+              },
+              "type": null
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 0,
+              "id": null,
+              "function": {
+                "arguments": "estric",
+                "name": null
+              },
+              "type": null
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 0,
+              "id": null,
+              "function": {
+                "arguments": "ted ",
+                "name": null
+              },
+              "type": null
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 0,
+              "id": null,
+              "function": {
+                "arguments": "code\"",
+                "name": null
+              },
+              "type": null
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 0,
+              "id": null,
+              "function": {
+                "arguments": "}",
+                "name": null
+              },
+              "type": null
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 1,
+              "id": "call_2",
+              "function": {
+                "arguments": "",
+                "name": "report_intruder"
+              },
+              "type": "function"
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": [
+            {
+              "index": 1,
+              "id": null,
+              "function": {
+                "arguments": "{}",
+                "name": null
+              },
+              "type": null
+            }
+          ]
+        },
+        "finish_reason": null,
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  },
+  {
+    "id": "chatcmpl-multi-tool",
+    "choices": [
+      {
+        "delta": {
+          "content": null,
+          "function_call": null,
+          "role": null,
+          "tool_calls": null
+        },
+        "finish_reason": "tool_calls",
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "created": 1,
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": null
+  }
+]

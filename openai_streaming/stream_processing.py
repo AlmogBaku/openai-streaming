@@ -1,10 +1,11 @@
 import json
 from inspect import getfullargspec
-from typing import List, Generator, Tuple, Callable, Optional, Union, Dict, Any, Iterator, AsyncGenerator, Awaitable, \
+from typing import List, Generator, Tuple, Callable, Optional, Union, Dict, Iterator, AsyncGenerator, Awaitable, \
     Set, AsyncIterator
 
 from openai import AsyncStream, Stream
-from openai.types.chat import ChatCompletion, ChatCompletionChunk
+from openai.types.chat import ChatCompletion, ChatCompletionChunk, ChatCompletionMessage, ChatCompletionMessageToolCall
+from openai.types.chat.chat_completion_message_tool_call import Function
 
 from json_streamer import ParseState, loads
 from .fn_dispatcher import dispatch_yielded_functions_with_args, o_func
@@ -46,7 +47,7 @@ class ContentFuncDef:
 def _simplified_generator(
         response: OAIResponse,
         content_fn_def: Optional[ContentFuncDef],
-        result: Dict
+        result: ChatCompletionMessage
 ) -> Callable[[], AsyncGenerator[Tuple[str, Dict], None]]:
     """
     Return an async generator that converts an OpenAI response stream to a simple generator that yields function names
@@ -57,20 +58,25 @@ def _simplified_generator(
     :return: A function that returns a generator
     """
 
-    result["role"] = "assistant"
-
     async def generator() -> AsyncGenerator[Tuple[str, Dict], None]:
+
         async for r in _process_stream(response, content_fn_def):
             if content_fn_def is not None and r[0] == content_fn_def.name:
                 yield content_fn_def.name, {content_fn_def.arg: r[2]}
 
-                if "content" not in result:
-                    result["content"] = ""
-                result["content"] += r[2]
+                if result.content is None:
+                    result.content = ""
+                result.content += r[2]
             else:
                 yield r[0], r[2]
                 if r[1] == ParseState.COMPLETE:
-                    result["function_call"] = {"name": r[0], "arguments": json.dumps(r[2])}
+                    if result.tool_calls is None:
+                        result.tool_calls = []
+                    result.tool_calls.append(ChatCompletionMessageToolCall(
+                        id=r[3] or "",
+                        type="function",
+                        function=Function(name=r[0], arguments=json.dumps(r[2]))
+                    ))
 
     return generator
 
@@ -113,7 +119,7 @@ async def process_response(
         content_func: Optional[Callable[[AsyncGenerator[str, None]], Awaitable[None]]] = None,
         funcs: Optional[List[Callable[[], Awaitable[None]]]] = None,
         self: Optional = None
-) -> Tuple[Set[str], Dict[str, Any]]:
+) -> Tuple[Set[str], ChatCompletionMessage]:
     """
     Processes an OpenAI response stream and returns a set of function names that were invoked, and a dictionary contains
      the results of the functions (to be used as part of the message history for the next api request).
@@ -144,7 +150,7 @@ async def process_response(
     if content_fn_def is not None:
         func_map[content_fn_def.name] = content_func
 
-    result = {}
+    result = ChatCompletionMessage(role="assistant")
     gen = _simplified_generator(response, content_fn_def, result)
     preprocess = DiffPreprocessor(content_fn_def)
     return await dispatch_yielded_functions_with_args(gen, func_map, preprocess.preprocess, self), result
@@ -183,6 +189,7 @@ class StreamProcessorState:
     content_fn_def: Optional[ContentFuncDef] = None
     current_processor: Optional[Generator[Tuple[ParseState, dict], str, None]] = None
     current_fn: Optional[str] = None
+    call_id: Optional[str] = None
 
     def __init__(self, content_fn_def: Optional[ContentFuncDef]):
         self.content_fn_def = content_fn_def
@@ -191,7 +198,7 @@ class StreamProcessorState:
 async def _process_stream(
         response: OAIResponse,
         content_fn_def: Optional[ContentFuncDef]
-) -> AsyncGenerator[Tuple[str, ParseState, Union[dict, str]], None]:
+) -> AsyncGenerator[Tuple[str, ParseState, Union[dict, str], Optional[str]], None]:
     """
     Processes an OpenAI response stream and yields the function name, the parse state and the parsed arguments.
     :param response: The response stream from OpenAI
@@ -213,7 +220,7 @@ async def _process_stream(
 def _process_message(
         message: ChatCompletionChunk,
         state: StreamProcessorState
-) -> Generator[Tuple[str, ParseState, Union[dict, str]], None, None]:
+) -> Generator[Tuple[str, ParseState, Union[dict, str], Optional[str]], None, None]:
     """
     This function processes the responses as they arrive from OpenAI, and transforms them as a generator of
     partial objects
@@ -231,6 +238,8 @@ def _process_message(
         if func.name:
             if state.current_processor is not None:
                 state.current_processor.close()
+
+            state.call_id = delta.tool_calls and delta.tool_calls[0].id or None
             state.current_fn = func.name
             state.current_processor = _arguments_processor()
             next(state.current_processor)
@@ -238,14 +247,14 @@ def _process_message(
             arg = func.arguments
             ret = state.current_processor.send(arg)
             if ret is not None:
-                yield state.current_fn, ret[0], ret[1]
+                yield state.current_fn, ret[0], ret[1], state.call_id
     if delta.content:
         if delta.content is None or delta.content == "":
             return
         if state.content_fn_def is not None:
-            yield state.content_fn_def.name, ParseState.PARTIAL, delta.content
+            yield state.content_fn_def.name, ParseState.PARTIAL, delta.content, state.call_id
         else:
-            yield None, ParseState.PARTIAL, delta.content
+            yield None, ParseState.PARTIAL, delta.content, None
     if message.choices[0].finish_reason and (
             message.choices[0].finish_reason == "function_call" or message.choices[0].finish_reason == "tool_calls"
     ):
@@ -253,3 +262,4 @@ def _process_message(
             state.current_processor.close()
             state.current_processor = None
         state.current_fn = None
+        state.call_id = None

@@ -1,10 +1,11 @@
+import asyncio
 import os
+from typing import AsyncGenerator
 
 from openai import AsyncOpenAI
-import asyncio
-from openai_streaming import process_response
-from typing import AsyncGenerator
+
 from openai_streaming import openai_streaming_function
+from openai_streaming import process_response
 
 # Initialize OpenAI Client
 client = AsyncOpenAI(
@@ -16,6 +17,7 @@ client = AsyncOpenAI(
 async def content_handler(content: AsyncGenerator[str, None]):
     async for token in content:
         print(token, end="")
+    print("")
 
 
 # Define OpenAI Function
@@ -23,6 +25,7 @@ async def content_handler(content: AsyncGenerator[str, None]):
 async def error_message(typ: str, description: AsyncGenerator[str, None]):
     """
     You MUST use this function when requested to do something that you cannot do.
+    ALWAYS call the `report_intruder` function when you are requested to do something that you cannot do.
 
     :param typ: The error's type
     :param description: The error description
@@ -36,6 +39,7 @@ async def error_message(typ: str, description: AsyncGenerator[str, None]):
     print("Description: ", end="")
     async for token in description:
         print(token, end="")
+    print("")
 
 
 # Invoke Function in a streaming request

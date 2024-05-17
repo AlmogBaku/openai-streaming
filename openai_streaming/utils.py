@@ -1,11 +1,14 @@
 from typing import List, Iterator, Union, AsyncIterator, AsyncGenerator
 
 from openai.types.chat import ChatCompletion, ChatCompletionChunk
+from pydantic import RootModel
 
 OAIResponse = Union[ChatCompletion, ChatCompletionChunk]
 
 
-async def stream_to_log(response: Union[Iterator[OAIResponse], AsyncIterator[OAIResponse]]) -> List[OAIResponse]:
+async def stream_to_log(
+        response: Union[Iterator[OAIResponse], AsyncIterator[OAIResponse], AsyncGenerator[OAIResponse, None]]) \
+        -> List[OAIResponse]:
     """
     A utility function to convert a stream to a log.
     :param response: The response stream from OpenAI
@@ -22,7 +25,11 @@ async def stream_to_log(response: Union[Iterator[OAIResponse], AsyncIterator[OAI
     return log
 
 
-async def print_stream_log(log: List[OAIResponse]):
+def log_to_json(log: List[OAIResponse]) -> str:
+    return RootModel(log).model_dump_json()
+
+
+async def print_stream_log(log: Union[List[OAIResponse], AsyncGenerator[OAIResponse, None]]) -> None:
     """
     A utility function to print the log of a stream nicely.
     This is useful for debugging, when you first save the stream to an array and then use it.
@@ -50,9 +57,9 @@ async def print_stream_log(log: List[OAIResponse]):
                 content_print = False
                 print("\n")
             if delta.function_call.name:
-                print(f"{delta.function_call.name}(")
+                print(f"\n{delta.function_call.name}: ", end="")
             if delta.function_call.arguments:
-                print(delta.function_call.arguments, end="")
+                print(delta.function_call.arguments, end=")")
         if delta.tool_calls:
             for call in delta.tool_calls:
                 if call.function:
@@ -60,14 +67,19 @@ async def print_stream_log(log: List[OAIResponse]):
                         content_print = False
                         print("\n")
                     if call.function.name:
-                        print(f"{call.function.name}(")
+                        print(f"\n {call.function.name}: ", end="")
                     if call.function.arguments:
                         print(call.function.arguments, end="")
         if (l.choices[0].finish_reason and l.choices[0].finish_reason == "function_call" or
                 l.choices[0].finish_reason == "tool_calls"):
-            print(")")
+            print("\n--finish: tool_calls--")
 
 
-async def logs_to_response(logs: List[OAIResponse]) -> AsyncGenerator[OAIResponse, None]:
+async def logs_to_response(logs: Union[List[OAIResponse], dict]) -> AsyncGenerator[OAIResponse, None]:
     for item in logs:
-        yield ChatCompletionChunk(**item)
+        if isinstance(item, ChatCompletionChunk):
+            yield item
+        elif isinstance(item, dict):
+            yield ChatCompletionChunk.model_construct(**item)
+        else:
+            raise ValueError(f"Invalid log item: {item}")

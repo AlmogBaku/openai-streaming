@@ -1,6 +1,6 @@
+from asyncio import Queue, gather, create_task
 from inspect import getfullargspec, signature, iscoroutinefunction
 from typing import Callable, List, Dict, Tuple, Union, Optional, Set, AsyncGenerator, get_origin, get_args, Type
-from asyncio import Queue, gather, create_task
 
 from pydantic import ValidationError
 
@@ -156,9 +156,9 @@ async def dispatch_yielded_functions_with_args(
     args_types = {}
     for func_name in func_map:
         spec = getfullargspec(o_func(func_map[func_name]))
-        if spec.args[0] == "self" and self is None:
+        if len(spec.args) > 0 and spec.args[0] == "self" and self is None:
             raise ValueError("self argument is required for functions that take self")
-        idx = 1 if spec.args[0] == "self" else 0
+        idx = 1 if len(spec.args) > 0 and spec.args[0] == "self" else 0
         args_queues[func_name] = {arg: Queue() for arg in spec.args[idx:]}
 
         # create type maps for validations
