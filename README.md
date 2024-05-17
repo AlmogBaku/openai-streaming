@@ -121,6 +121,62 @@ async def main():
 asyncio.run(main())
 ```
 
+## 🤓Streaming structured data (advanced usage)
+
+The library also supports streaming structured data.
+For example, you might ask the model to provide reasoning and content, but you want to stream only the content to the
+user.
+
+This is where the `process_struct_response()` function comes in handy.
+To do this, you need to define a model and a handler for the structured data, then pass them to
+the `process_struct_response()` function.
+
+```python
+class MathProblem(BaseModel):
+    steps: List[str]
+    answer: Optional[int] = None
+
+
+# Define handler
+class Handler(BaseHandler[MathProblem]):
+    async def handle_partially_parsed(self, data: MathProblem) -> Optional[Terminate]:
+        if len(data.steps) == 0 and data.answer:
+            return Terminate()  # something is wrong here, so we immediately stop
+
+        if data.answer:
+            self.ws.send(data.answer)  # show to the user with WebSocket
+
+    async def terminated(self):
+        ws.close()  # close the WebSocket§
+
+
+# Invoke OpenAI request
+async def main():
+    resp = await client.chat.completions.create(
+        messages=[{
+            "role": "system",
+            "content":
+                "For every question asked, you must first state the steps, and then the answer."
+                "Your response should be in the following format: \n"
+                " steps: List[str]\n"
+                " answer: int\n"
+                "ONLY write the YAML, without any other text or wrapping it in a code block."
+                "YAML should be VALID, and strings must be in double quotes."
+        }, {"role": "user", "content": "1+3*2"}],
+        stream=True
+    )
+    await process_struct_response(resp, Handler(), 'yaml')
+
+
+asyncio.run(main())
+```
+
+With this function, you can process and stream structured data, or even implement your own "tool use" mechanism with
+streaming.
+
+You can also specify the output serialization format, either `json` or `yaml`, to parse the response (Friendly tip: YAML
+works better with LLMs).
+
 # 🤔 What's the big deal? Why use this library?
 
 The OpenAI Streaming API is robust but challenging to navigate. Using the `stream=True` flag, we get tokens as they are

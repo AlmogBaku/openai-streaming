@@ -21,10 +21,7 @@ class MathProblem(BaseModel):
 
 
 # Define handler
-class Handler(BaseHandler):
-    def model(self):
-        return MathProblem
-
+class Handler(BaseHandler[MathProblem]):
     async def handle_partially_parsed(self, data: MathProblem) -> Optional[Terminate]:
         if len(data.steps) == 0 and data.answer:
             return Terminate()
