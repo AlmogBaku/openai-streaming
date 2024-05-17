@@ -49,7 +49,7 @@ Your function with additional attribute `openai_schema`
 
 ```python
 async def stream_to_log(
-    response: Union[Iterator[OAIResponse], AsyncIterator[OAIResponse]]
+        response: Union[Iterator[OAIResponse], AsyncIterator[OAIResponse]]
 ) -> List[OAIResponse]
 ```
 
@@ -77,7 +77,7 @@ This is useful for debugging, when you first save the stream to an array and the
 
 **Arguments**:
 
-- `log`: 
+- `log`:
 
 <a id="stream_processing"></a>
 
@@ -134,7 +134,7 @@ The difference between the current dictionary and the previous one
 async def process_response(
         response: OAIResponse,
         content_func: Optional[Callable[[AsyncGenerator[str, None]],
-                                        Awaitable[None]]] = None,
+        Awaitable[None]]] = None,
         funcs: Optional[List[Callable[[], Awaitable[None]]]] = None,
         self: Optional = None) -> Tuple[Set[str], Dict[str, Any]]
 ```
@@ -177,7 +177,7 @@ function in the func attribute).
 
 **Arguments**:
 
-- `func`: 
+- `func`:
 
 <a id="fn_dispatcher.dispatch_yielded_functions_with_args"></a>
 
@@ -198,7 +198,7 @@ Dispatches function calls from a generator that yields function names and argume
 - `gen`: The generator that yields function names and arguments
 - `funcs`: The functions to dispatch to
 - `dict_preprocessor`: A function that takes a function name and a dictionary of arguments and returns a new
-dictionary of arguments
+  dictionary of arguments
 - `self`: An optional self argument to pass to the functions
 
 **Returns**:
@@ -267,9 +267,9 @@ Called when the parsing was terminated
 
 ```python
 async def process_struct_response(
-    response: OAIResponse,
-    handler: BaseHandler,
-    output_serialization: OutputSerialization = "json"
+        response: OAIResponse,
+        handler: BaseHandler,
+        output_serialization: OutputSerialization = "json"
 ) -> Tuple[Optional[Union[TModel, Terminate]], Dict[str, Any]]
 ```
 

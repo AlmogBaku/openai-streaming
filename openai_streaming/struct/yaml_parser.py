@@ -1,4 +1,5 @@
 from typing import List, Dict, Tuple, Generator, Optional
+
 from json_streamer import Parser, ParseState
 
 

@@ -1,12 +1,11 @@
+import asyncio
 import os
 from time import sleep
+from typing import Optional, List
 
 from openai import AsyncOpenAI
-import asyncio
-
 from pydantic import BaseModel
 
-from typing import Optional, List
 from openai_streaming.struct import BaseHandler, process_struct_response, Terminate
 
 # Initialize OpenAI Client

@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - '**.py'
-  workflow_dispatch: ~
+  workflow_call:
 
 permissions:
   contents: write

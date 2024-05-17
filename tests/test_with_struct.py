@@ -1,14 +1,12 @@
 import json
 import unittest
 from os.path import dirname
-
-import openai
+from typing import Dict, Generator, Optional, List
 from unittest.mock import patch, AsyncMock
 
+import openai
 from openai import BaseModel
 from openai.types.chat import ChatCompletionChunk
-
-from typing import Dict, Generator, Optional, List
 
 from openai_streaming.struct import Terminate, BaseHandler, process_struct_response
 

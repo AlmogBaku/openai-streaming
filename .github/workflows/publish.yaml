@@ -13,11 +13,7 @@ permissions:
 
 jobs:
   tests:
-    name: "Run tests"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Test
-        uses: ./.github/workflows/test.yaml
+    uses: ./.github/workflows/test.yaml
   version:
     runs-on: ubuntu-latest
     outputs:
