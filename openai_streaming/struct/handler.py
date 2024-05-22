@@ -93,7 +93,7 @@ class _ContentHandler:
         """
         try:
             typ = get_args(type(self.handler).__orig_bases__[0])[0]
-            parsed = typ(**part)
+            parsed = typ.model_construct(**part)
         except (TypeError, ValueError):
             return
 
